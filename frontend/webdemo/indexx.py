@@ -5,9 +5,9 @@ app = Flask(__name__)
 def index():
    return render_template('index.html')
 
-@app.route('/hello',methods=['Get'])
+@app.route('/chart',methods=['Get'])
 def hello_world():
-   return 'hello world'
+   return render_template('generic.html')
 
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=5000)
