@@ -1811,7 +1811,7 @@ ul.icons {
   -webkit-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
-  background-image: url("../../images/banner.jpg");
+  /*background-image: url("../../images/banner.jpg");*/
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2018,15 +2018,15 @@ ul.icons {
     opacity: 0.6;
     position: absolute;
     top: 0;
-    webkit-linear-gradientidth: 100%;
+    -webkit-linear-gradientidth: 100%;
     width: 100%;
     z-index: 1; }
   #banner.small {
     height: 30vh !important;
     min-height: 30vh; }
   @media screen and (max-width: 1280px) {
-    #banner video {
-      display: none; } }
+    /*#banner video {
+      display: none; } }*/
   @media screen and (max-width: 736px) {
     #banner {
       height: auto !important;
