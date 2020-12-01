@@ -21,22 +21,10 @@ def home():
 def predict():
     if True:
         result = request.form
+        
         return render_template("result.html",result = result)
 
-@app.route('/result',methods = ['POST', 'GET'])
-def result():
-   if True:
-      result = request.form
-      return render_template("result.html",result = result)
 
-
-
-#@app.route('/result',methods = ['POST', 'GET'])
-#def result():
-#   if request.method == 'POST':
- #  if True:
-  #    result = request.form
-   #   return render_template("result.html",result = result)
 
 
 if __name__ == '__main__':
