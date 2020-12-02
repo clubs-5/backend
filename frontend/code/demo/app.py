@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request
+
+
+
+
 app = Flask(__name__)
 @app.route('/')
 def student():
@@ -9,9 +13,10 @@ def student():
 def result():
 #   if request.method == 'POST':
    if True:
-
       result = request.form
       return render_template("result.html",result = result)
+
+
 
 
 if __name__ == '__main__':
