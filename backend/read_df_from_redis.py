@@ -12,4 +12,4 @@ data = r.get('recomm')
 # 反序列化
 df = pd.DataFrame.from_dict(context.deserialize(data))
 
-df.head()
+print(df.head())
