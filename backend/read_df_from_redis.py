@@ -11,3 +11,4 @@ data = r.get('recomm')
 
 df = pa.deserialize(data)
 
+df.head()
