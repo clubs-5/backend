@@ -17,7 +17,8 @@ data = r.get('recomm')
 # 反序列化
 df = pd.DataFrame.from_dict(context.deserialize(data))
 
-
+#從本地讀取movie資料
+movie = pd.read_csv('movies.csv')
 
 
 @app.route('/',methods=['Get'])
@@ -32,36 +33,33 @@ def hello_world():
 def result():
     if request.method == 'POST':
 
-        
-    #連接movie資料庫
-        movie = pd.read_csv('movies.csv')
-
     #接收movieId
-        input_ = request.form.to_dict()
-        movie_ID = input_['電影名字']
-        input_s = int(movie_ID)
+        #input_ = request.form.to_dict()
 
-    #movieId帶進模型運算
-        m  = movie.iloc[input_s]
-        select = pd.Series(m, index = m.keys())
-
-    #取出結果
-        #a = 選取user的電影類型
-        a = select[2]
-        #c =split結果變list
-        c = a.split("|")
-        
+    #輸入userid
+        uId = request.form.to_dict()
+        recom_movieId = df[df['userId'] == uId]['movieId'].to_list()
+        recom_movieId = recom_movieId[0]
+        #print(recom_movieId)
         b = []
-        user1 = [] 
-        for item in c:
-            category = ['Horror','Children','Comedy','Adventure', 'Fantasy', 'Animation', 'Musical','Action', 'Crime', 'Thriller','Romance', 'Documentary', 'War', 'Drama', 'Mystery']
-            for i in category:
-                pattern =  r'.*{}.*'.format(i)
-                result = re.match(pattern,item)
-                if result != None:
-                    b.append(i)
-                else:
-                    pass
+        for movieId in recom_movieId:
+            #print(movieId)
+            movieId_2 = movieId
+            results = movie[movie['movieId'] == movieId_2]['genres'].apply(lambda x:  x.split('|')).to_list()
+            #usertype
+            c = results[0]
+            
+            for item in c:
+                category = ['Horror','Children','Comedy','Adventure', 'Fantasy', 'Animation', 'Musical','Action', 'Crime', 'Thriller','Romance', 'Documentary', 'War', 'Drama', 'Mystery']
+                for i in category:
+                    pattern =  r'.*{}.*'.format(i)
+                    result = re.match(pattern,item)
+                    if result != None:
+                        b.append(i)
+                    else:
+                        pass
+
+
     
         db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="TVShows")
         cursor = db.cursor()
