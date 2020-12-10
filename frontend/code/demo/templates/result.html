@@ -1,13 +1,231 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
-   <body>
-      <table border = 1>
-         {% for key, value in result.items() %}
-            <tr>
-               <th> {{ key }} </th>
-               <td> {{ value }} </td>
-            </tr>
-         {% endfor %}
-      </table>
-   </body>
+	<head>
+		<title>Clubs-5 Demo by 1MINK</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="./">Home</a>
+				<a class="logo" href="#picture">Service</a>
+				<a class="logo" href="#about_us">About us</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="templates/index.html">Home</a></li>
+					<li><a href="templates/elements.html">Elements</a></li>
+					<li><a href="templates/generic.html">Generic</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>MovieDemo</h1>
+					<p>Tibame 梅花組 專題<br />
+					伯翰 士紳  孟謙 益名 怡伶</p>
+				</div>
+				<video src="static/images/banner.mp4" autoplay loop muted></video>
+			</section>
+ 
+		<!-- Highlights -->
+			<section id="picture" class="wrapper">
+				<div class="inner">
+					<header class="special">
+						<h2>SERVICE WE PROVIDE</h2>
+						<p>We provide two service in this web.</p>
+					</header>
+					<div class="highlights">
+						<section>
+							<div class="content">
+								<header>
+									<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
+									<h3>Personal File</h3>
+								</header>
+								<form action = "http://127.0.0.1:5000/" method = "POST">
+								<p>你的名字：<input type="text" name="使用者" placeholder="請輸入你的名字"></p>
+								<p>Input your name here.</p>
+								<p><input type = "submit" value = "submit" /></p>
+						    	</form>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
+									<h3>Movie Names</h3>
+									<form action = "http://127.0.0.1:5000/result" method = "POST">
+										請輸入電影名稱：<input type="text" name="電影名字" placeholder="請輸入電影名稱">
+								</header>
+								<p> 影集推薦 </p>
+								<table border = 1>
+									{% for key, value in result.items() %}
+									   <tr>
+										  <th> {{ key }} </th>
+										  <td> {{ value }} </td>
+									   </tr>
+									{% endfor %}
+								</table>
+								<p><input type = "submit" value = "submit" /></p>
+								</form>
+							</div>
+						</section>
+					
+						<section>
+							<div class="content">
+								<header>
+									<a href="/chart" class="icon fa-line-chart"><span class="label">Icon</span></a>
+									<h3>Chart </h3>
+								</header>
+								<p>analysis</p>
+							</div>
+						</section>
+					
+					
+					</div>
+				</div>
+			</section>
+
+		<!-- CTA -->
+			<section id="cta" class="wrapper">
+				<div class="inner">
+					<h2>WELCOME TO CONTACT US</h2>
+					<p>The following is the introduction of the team members</p>
+				</div>
+			</section>
+
+		<!-- Testimonials -->
+			<section id="about_us" class="wrapper">
+				<div class="inner">
+					<header class="special">
+						<h2>MEMBER IN OUR TEAM</h2>
+						<p>our teammember</p>
+					</header>
+					<div class="testimonials">
+						<section>
+							<div class="content">
+								<blockquote>
+									<p>這裡是自我介紹</p>
+								</blockquote>
+								<div class="author">
+									<div class="image">
+										<img src="static/images/pic01.jpg" alt="" />
+									</div>
+									<p class="credit">- <strong>伯翰</strong> <span>組長</span></p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<blockquote>
+									<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+								</blockquote>
+								<div class="author">
+									<div class="image">
+										<img src="static/images/pic03.jpg" alt="" />
+									</div>
+									<p class="credit">- <strong>John Doe</strong> <span>職位</span></p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<blockquote>
+									<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+								</blockquote>
+								<div class="author">
+									<div class="image">
+										<img src="static/images/pic02.jpg" alt="" />
+									</div>
+									<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<blockquote>
+									<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+								</blockquote>
+								<div class="author">
+									<div class="image">
+										<img src="static/images/pic02.jpg" alt="" />
+									</div>
+									<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<blockquote>
+									<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+								</blockquote>
+								<div class="author">
+									<div class="image">
+										<img src="static/images/pic02.jpg" alt="" />
+									</div>
+									<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>About clubs-5</h3>
+							<p>We are a group of people who want to offer you movie something.MDFK THIS IS ONLY A DEMO BBBBBB.</p>
+						</section>
+						<section>
+							<h4>SOME OTHER THINGS</h4>
+							<ul class="alt">
+								<li><a href="https://tw.yahoo.com/?p=us">YAHOO</a></li>
+								<li><a href="#">IG</a></li>
+								<li><a href="#">SHOPEE</a></li>
+								<li><a href="#">LOTIN</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Connect us.</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="https://github.com/clubs-5"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/browser.min.js"></script>
+			<script src="static/assets/js/breakpoints.min.js"></script>
+			<script src="static/assets/js/util.js"></script>
+			<script src="static/assets/js/main.js"></script>
+
+	</body>
 </html>

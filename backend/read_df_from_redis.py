@@ -3,7 +3,7 @@ import redis
 import pandas as pd
 
 # 宣告 redis 連線
-r = redis.Redis(host='master.tibame', port=6379, db=0)
+r = redis.Redis(host='10.2.1.234', port=6379, db=0)
 context = pa.default_serialization_context()
 
 # 從 redis 讀取 recomm 資料
