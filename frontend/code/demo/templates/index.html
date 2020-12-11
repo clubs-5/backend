@@ -58,7 +58,7 @@
 									<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
 									<h3>Personal File</h3>
 								</header>
-								<form action = "http://127.0.0.1:5000/" method = "POST">
+								<form action = "http://127.0.0.1:5000/result" method = "POST">
 								<p>你的名字：<input type="text" name="使用者" placeholder="請輸入你的名字"></p>
 								<p>Input your name here.</p>
 								<p><input type = "submit" value = "submit" /></p>
@@ -71,14 +71,22 @@
 									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
 									<h3>Movie Names</h3>
 									<form action = "http://127.0.0.1:5000/result" method = "POST">
-										請輸入電影名稱：<input type="text" name="電影名字" placeholder="請輸入電影名稱">
+										請輸入電影名稱：<input type="text" name="名字" placeholder="請輸入電影名稱">
 								</header>
 								<p>Write down five movie names here.</p>
 								<p><input type = "submit" value = "submit" /></p>
+								<table border = 1>
+									{% for t in result %}
+										<tr>
+										{% for i in t %}
+											<td>{{ i }}</td>
+										{% endfor %}
+										</tr>
+									{% endfor %}
+								</table>
 								</form>
 							</div>
-						</section>
-					
+						</section>				
 						<section>
 							<div class="content">
 								<header>

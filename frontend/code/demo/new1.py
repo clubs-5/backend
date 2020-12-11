@@ -7,8 +7,8 @@ app = Flask(__name__)
 import pymysql
 import re
 
-r = redis.Redis(host='18.183.130.58', port=6379, db=0)
-#r = redis.Redis(host='10.2.1.234', port=6379, db=0)
+#r = redis.Redis(host='18.183.130.58', port=6379, db=0)
+r = redis.Redis(host='10.2.1.234', port=6379, db=0)
 context = pa.default_serialization_context()
 
 # 從 redis 讀取 recomm 資料
@@ -25,6 +25,7 @@ movie = pd.read_csv('movies.csv')
 def index():
    return render_template('index.html')
 
+
 @app.route('/hello',methods=['Get'])
 def hello_world():
    return 'hello world'
@@ -32,12 +33,8 @@ def hello_world():
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
     if request.method == 'POST':
-
-    #接收movieId
-        #input_ = request.form.to_dict()
-
-        #輸入userid
-        uId = request.form.get('電影名字')
+        #接收userid
+        uId = request.form.get('名字')
         uId = int(uId)
         recom_movieId = df[df['userId'] == uId]['movieId'].to_list()
         recom_movieId = recom_movieId[0]
@@ -61,9 +58,9 @@ def result():
                     else:
                         pass
 
-
-        db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
-        #db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="TVShows")
+        #連接mysql的影集資料庫
+        #db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
+        db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="TVShows")
         cursor = db.cursor()
         cursor.execute("SELECT Title, Year_x, imdbRating, Genre FROM imdbdata order by imdbRating DESC, Year_x DESC ")
         result = cursor.fetchall()
@@ -92,9 +89,17 @@ def result():
     "3":ans[2],
     "4":ans[3],
     "5":ans[4]
-}
+    }
 
-    return render_template("result.html",result = output)
+    Table = []
+    for key, value in output.items():    
+        temp = []
+        temp.extend([key,value])  
+        Table.append(temp)
+
+
+    return render_template("index.html",result = Table)
+
 
 
 if __name__ == "__main__":
