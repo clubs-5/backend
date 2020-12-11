@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Clubs-5 Demo by 1MINK</title>
+		<title>Clubs-5 </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -28,18 +28,18 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="templates/index.html">Home</a></li>
+					<li><a href="./">Home</a></li>
 					<li><a href="templates/elements.html">Elements</a></li>
-					<li><a href="templates/generic.html">Generic</a></li>
+					<li><a href="/chart">Chart</a></li>
 				</ul>
 			</nav>
 
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<h1>MovieDemo</h1>
-					<p>A Movie Website Demo with a video background<br />
-					designed by <a href="https://templateIndustrd.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
+					<h1>癮集</h1>
+					<p>推薦癮集、預測得獎<br />
+					
 				</div>
 				<video src="static/images/banner.mp4" autoplay loop muted></video>
 			</section>
@@ -49,7 +49,7 @@
 				<div class="inner">
 					<header class="special">
 						<h2>SERVICE WE PROVIDE</h2>
-						<p>We provide two service in this web.</p>
+						<p>Our Service</p>
 					</header>
 					<div class="highlights">
 						<section>
@@ -59,22 +59,42 @@
 									<h3>Personal File</h3>
 								</header>
 								
-								<form>
-									你的名字：<input type="text" name="欄位名稱" placeholder="請輸入你的名字">
+								<form >
+									請輸入id：<input type="text" name="你的id" placeholder="請輸入你的id">
 								</form>
-								<p>Input your name here.</p>
+								<form>
+									密碼欄位：<input type="password" name="密碼欄位名稱">
+								</form>
+								<p><input type = "submit" value = "submit" /></p>
 							</div>
 						</section>
 						<section>
 							<div class="content">
 								<header>
 									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
-									<h3>Movie Names</h3>
-									<form>
-										請輸入電影名稱：<input type="text" name="欄位名稱" placeholder="請輸入電影名稱">
-									</form>
+									<h3>推薦結果</h3>
+									
 								</header>
-								<p>Write down five movie names here.</p>
+								<p>Enjoy.</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
+									<h3>艾美獎預測</h3>
+									<a class="button" href="/predict">預測</a>
+									<p>                         </p>
+									<table border = 1>
+										{% for key in result1 %}
+										   <tr>
+											  <th> {{ key }} </th>
+											  
+										   </tr>
+										{% endfor %}
+									 </table>
+								</header>
+								<p>Winnner.</p>
 							</div>
 						</section>
 					

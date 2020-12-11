@@ -7,8 +7,8 @@ app = Flask(__name__)
 import pymysql
 import re
 
-r = redis.Redis(host='18.183.130.58', port=6379, db=0)
-#r = redis.Redis(host='10.2.1.234', port=6379, db=0)
+#r = redis.Redis(host='18.183.130.58', port=6379, db=0)
+r = redis.Redis(host='10.2.1.234', port=6379, db=0)
 context = pa.default_serialization_context()
 
 # 從 redis 讀取 recomm 資料
@@ -18,7 +18,7 @@ data = r.get('recomm')
 df = pd.DataFrame.from_dict(context.deserialize(data))
 
 #從本地讀取movie資料
-movie = pd.read_csv('movies.csv')
+movie = pd.read_csv('/Users/goldenman/Desktop/clubs-5 web/webapp/frontend/code/demo/movies.csv')
 
 
 @app.route('/',methods=['Get'])
@@ -62,8 +62,8 @@ def result():
                         pass
 
 
-        db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
-        #db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="TVShows")
+        #db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
+        db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="TVShows")
         cursor = db.cursor()
         cursor.execute("SELECT Title, Year_x, imdbRating, Genre FROM imdbdata order by imdbRating DESC, Year_x DESC ")
         result = cursor.fetchall()
