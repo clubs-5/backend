@@ -32,10 +32,6 @@ def hello_world():
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
     if request.method == 'POST':
-
-    #接收movieId
-        #input_ = request.form.to_dict()
-
         #輸入userid
         uId = request.form.get('電影名字')
         uId = int(uId)
