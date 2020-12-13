@@ -11,6 +11,10 @@ redis = "*"
 pyarrow = "*"
 pandas = "*"
 ipykernel = "*"
+flask = "*"
+pymysql = "*"
+joblib = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.8"
