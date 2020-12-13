@@ -21,8 +21,8 @@ def index():
 
 @app.route('/predict',methods=['Get', 'POST'])
 def predict():
-   model = load('/Users/goldenman/Desktop/webdemo/Prediction_Model/Model/Logistic_Regression.joblib') 
-   df = pd.read_csv('/Users/goldenman/Desktop/webdemo/Prediction_Model//2020_series_tmp.csv')
+   model = load('./Prediction_Model/Model/Logistic_Regression.joblib') # model 應該另外放在其他地方 
+   df = pd.read_csv('./Prediction_Model/2020_series_tmp.csv') # model input 應該是從 mysql 來
 
    #載入2020年資料
    X = df.drop(['Title','Won'],axis=1)
@@ -78,11 +78,11 @@ def chart2():
 
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
-   r = redis.Redis(host='10.2.1.234', port=6379, db=0)
+   r = redis.Redis(host='10.8.0.6', port=6379, db=0) # redis 正確位址
    context = pa.default_serialization_context()
    data = r.get('recomm')
    df = pd.DataFrame.from_dict(context.deserialize(data))
-   movie = pd.read_csv('/Users/goldenman/Desktop/clubs-5 web/webapp/frontend/code/demo/movies.csv')
+   movie = pd.read_csv('movies.csv') # 這個需要改成 mysql 
    if request.method == 'POST':    
       #input_ = request.form.to_dict()    
       #輸入userid
@@ -110,7 +110,7 @@ def result():
                else:
                   pass    
       #db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
-      db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="TVShows")
+      db = pymysql.connect(host="10.8.0.6", user="root", passwd="tibame", db="TVShows") # mysql 在哪
       cursor = db.cursor()
       cursor.execute("SELECT Title, Year_x, imdbRating, Genre FROM imdbdata order by imdbRating DESC, Year_x DESC ")
       result = cursor.fetchall()
@@ -149,4 +149,4 @@ def result():
    return render_template("index.html",result = Table)
 
 if __name__ == "__main__":
-   app.run(debug=True, host='localhost', port=5000)
+   app.run(debug=True, host='0.0.0.0', port=5000) # host 應該是外部 interface ip 或是 0.0.0.0 所有 interface
