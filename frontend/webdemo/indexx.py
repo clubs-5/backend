@@ -82,7 +82,7 @@ def result():
    context = pa.default_serialization_context()
    data = r.get('recomm')
    df = pd.DataFrame.from_dict(context.deserialize(data))
-   movie = pd.read_csv('movies.csv') # 這個需要改成 mysql 
+   #movie = pd.read_csv('movies.csv') # 這個需要改成 mysql 
    if request.method == 'POST':    
       #input_ = request.form.to_dict()    
       #輸入userid
@@ -95,12 +95,20 @@ def result():
       for movieId in recom_movieId:
          #print(movieId)
          movieId_2 = movieId
-         results = movie[movie['movieId'] == movieId_2]['genres'].apply(lambda x:  x.split('|')).to_list()
-         #usertype
-         c = results[0]
+         db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="Movies")
+         cursor = db.cursor()
+         cursor.execute("SELECT genres FROM movie where movieId = {}".format(movieId_2))
+         result = cursor.fetchall()
          
+    #usertype
+         #results = movie[movie['movieId'] == movieId_2]['genres'].apply(lambda x:  x.split('|')).to_list()
+         #c = results[0]
+         result = result[0]
+         user_type = result[0]
+         user_type = user_type.split("|")
+
          #建立類型做正則表示
-         for item in c:
+         for item in user_type:
             category = ['Horror','Children','Comedy','Adventure', 'Fantasy', 'Animation', 'Musical','Action', 'Crime', 'Thriller','Romance', 'Documentary', 'War', 'Drama', 'Mystery']
             for i in category:
                pattern =  r'.*{}.*'.format(i)
@@ -109,6 +117,7 @@ def result():
                   b.append(i)
                else:
                   pass    
+      db.close()         
       #db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
       db = pymysql.connect(host="10.8.0.6", user="root", passwd="tibame", db="TVShows") # mysql 在哪
       cursor = db.cursor()
@@ -131,7 +140,7 @@ def result():
                   count += 1
                else:
                   pass
-                   
+      db.close()                
    output = {
    "1":ans[0],
    "2":ans[1],
