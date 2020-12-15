@@ -21,8 +21,8 @@ def index():
 
 @app.route('/predict',methods=['Get', 'POST'])
 def predict():
-   model = load('./Prediction_Model/Model/Logistic_Regression.joblib') # model 應該另外放在其他地方 
-   df = pd.read_csv('./Prediction_Model/2020_series_tmp.csv') # model input 應該是從 mysql 來
+   model = load('./frontend/webdemo/Prediction_Model/Model/Logistic_Regression.joblib') # model 應該另外放在其他地方 
+   df = pd.read_csv('./frontend/webdemo/Prediction_Model/2020_series_tmp.csv') # model input 應該是從 mysql 來
 
    #載入2020年資料
    X = df.drop(['Title','Won'],axis=1)
@@ -82,7 +82,7 @@ def result():
    context = pa.default_serialization_context()
    data = r.get('recomm')
    df = pd.DataFrame.from_dict(context.deserialize(data))
-   #movie = pd.read_csv('movies.csv') # 這個需要改成 mysql 
+   movie = pd.read_csv('movies.csv') # 這個需要改成 mysql 
    if request.method == 'POST':    
       #input_ = request.form.to_dict()    
       #輸入userid
@@ -95,19 +95,12 @@ def result():
       for movieId in recom_movieId:
          #print(movieId)
          movieId_2 = movieId
-         db = pymysql.connect(host="10.8.0.6", user="root", passwd="tibame", db="Movies")
-         cursor = db.cursor()
-         cursor.execute("SELECT genres FROM movie where movieId = {}".format(movieId_2))
-         result = cursor.fetchall()
-
-      #usertype
-         result = result[0]
-         user_type = result[0]
-         user_type = user_type.split("|")
-
+         results = movie[movie['movieId'] == movieId_2]['genres'].apply(lambda x:  x.split('|')).to_list()
+         #usertype
+         c = results[0]
          
          #建立類型做正則表示
-         for item in user_type:
+         for item in c:
             category = ['Horror','Children','Comedy','Adventure', 'Fantasy', 'Animation', 'Musical','Action', 'Crime', 'Thriller','Romance', 'Documentary', 'War', 'Drama', 'Mystery']
             for i in category:
                pattern =  r'.*{}.*'.format(i)
@@ -115,9 +108,7 @@ def result():
                if result != None:
                   b.append(i)
                else:
-                  pass
-
-      #連接mysql的影集資料庫    
+                  pass    
       #db = pymysql.connect(host="18.183.130.58", user="root", passwd="tibame", db="TVShows")
       db = pymysql.connect(host="10.8.0.6", user="root", passwd="tibame", db="TVShows") # mysql 在哪
       cursor = db.cursor()

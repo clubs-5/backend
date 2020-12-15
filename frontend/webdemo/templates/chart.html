@@ -42,10 +42,10 @@
 				<div class="inner">
 					<div class="content">
 						<header>
-							<h2>各種圖表</h2>
+							<h2>CHART</h2>
 						</header>
 						<div id="/chart123"></div>
-						<button onclick="goPython()"><a href="/chart123">IMDBAverage</a></button>
+						<button onclick="goPython()"><a href="/chart123">IMDB各年平均評分</a></button>
 						<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 						<script>
 
@@ -66,7 +66,7 @@
 
 </p>
 						<div id="/chart122"></div>
-						<button onclick="goPython()"><a href="/chart122">countryIMDB</a></button>
+						<button onclick="goPython()"><a href="/chart122">IMDB各國平均評分</a></button>
 						<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 						<script>
 
@@ -86,28 +86,7 @@
 	<p>                 
 
 	</p>
-						<div id="/chart121"></div>
-						<button onclick="goPython()"><a href="/chart121">BBB</a></button>
-						<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-						<script>
 
-							function goPython(){
-								$.ajax({
-								type:"POST",
-								success:function(msg) {
-									console.log(msg);
-									alert("working")
-								},
-								error:function() {
-									alert("not working")
-								}
-							});
-							};
-						</script>
-
-						
-						
-					</div>
 				</div>
 			</section>
 

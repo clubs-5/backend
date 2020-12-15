@@ -1,7 +1,7 @@
 import plotly.express as px
 import pandas as pd 
 def runcoun():
-    ratings = pd.read_csv('./counIMDB.csv')
+    ratings = pd.read_csv('./frontend/webdemo/counIMDB.csv')
     top_rated=ratings[0:10]
     fig =px.sunburst(
         top_rated,
