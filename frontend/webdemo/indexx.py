@@ -21,8 +21,8 @@ def index():
 
 @app.route('/predict',methods=['Get', 'POST'])
 def predict():
-   model = load('./frontend/webdemo/Prediction_Model/Model/Logistic_Regression.joblib') # model 應該另外放在其他地方 
-   df = pd.read_csv('./frontend/webdemo/Prediction_Model/2020_series_tmp.csv') # model input 應該是從 mysql 來
+   model = load('./Prediction_Model/Model/Logistic_Regression.joblib') # model 應該另外放在其他地方 
+   df = pd.read_csv('./Prediction_Model/2020_series_tmp.csv') # model input 應該是從 mysql 來
 
    #載入2020年資料
    X = df.drop(['Title','Won'],axis=1)
