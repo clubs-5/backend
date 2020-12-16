@@ -95,7 +95,7 @@ def result():
       for movieId in recom_movieId:
          #print(movieId)
          movieId_2 = movieId
-         db = pymysql.connect(host="10.2.1.234", user="root", passwd="tibame", db="Movies")
+         db = pymysql.connect(host="10.8.0.6", user="root", passwd="tibame", db="Movies")
          cursor = db.cursor()
          cursor.execute("SELECT genres FROM movie where movieId = {}".format(movieId_2))
          result = cursor.fetchall()
